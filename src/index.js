@@ -24,17 +24,11 @@ export class Entity extends React.Component {
   };
 
   render() {
-    // Allow through normal attributes..
-    const otherProps = {};
-    ['id', 'mixin'].forEach(propName => {
-      if (this.props[propName]) { otherProps[propName] = this.props[propName]; }
-    });
-
     return React.createElement(
       this.props.primitive || 'a-entity',
       Object.assign(
         {ref: this.attachEvents},
-        otherProps,
+        this.props,
         serializeComponents(this.props)
       ),
       this.props.children
